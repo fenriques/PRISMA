@@ -102,6 +102,7 @@ function MainDialog() {
     this.bSearchFiles = false;
     this.bFileOperations = false;
     this.bTransfer = false;
+    
     /*
      * We use a periodic timer and a 'dirty' flag to ensure that our dialog is
      * always responsive to accumulated FileWatcher events. This is necessary
