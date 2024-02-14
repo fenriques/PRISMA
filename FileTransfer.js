@@ -1,6 +1,6 @@
-function NetworkOperation( MainDialog)
+function NetworkOperation( PrismDialog)
 {
-    this.MainDialog = MainDialog;
+    this.PrismDialog = PrismDialog;
 
     this.T = new NetworkTransfer;
     this.T.parent = this;
@@ -42,7 +42,7 @@ function NetworkOperation( MainDialog)
                 uploadCurrent, uploadTotal,
                 Math.round( 100.0*uploadCurrent/uploadTotal ) ) ;
        else if (uploadCurrent > 0)
-          this.parent.object_node.setText( 1, this.parent.MainDialog.fileSizeAsString(uploadCurrent,3));
+          this.parent.object_node.setText( 1, this.parent.PrismDialog.fileSizeAsString(uploadCurrent,3));
 
        processEvents();
        return true;
@@ -76,7 +76,7 @@ function NetworkOperation( MainDialog)
         {
             frame_list[i].status = "upload_error";
             console.noteln("file non trasferito: ");
-            this.object_node.setIcon(0, this.MainDialog.scaledResource( this.MainDialog.statusIcon(frame_list[i].status)) );
+            this.object_node.setIcon(0, this.PrismDialog.scaledResource( this.PrismDialog.statusIcon(frame_list[i].status)) );
 
             throw new Error( this.T.errorInformation );
         }
@@ -96,7 +96,7 @@ function NetworkOperation( MainDialog)
         console.noteln("Update file transfer");
 
         // Files are transferred only when ´file transfer timer'  is running
-        if(this.MainDialog.bTransfer 
+        if(this.PrismDialog.bTransfer 
             && (current_hours >= (global_param.ftp_start_time - 1) || global_param.ftp_start_time == 0) 
             && (current_hours < (global_param.ftp_stop_time ) || global_param.ftp_stop_time == 0))
         {
@@ -133,8 +133,8 @@ function NetworkOperation( MainDialog)
 
                 let d = new Date(Date.now());
 
-                this.object_node = new TreeBoxNode( this.MainDialog.file_transfer_Tree );
-                this.object_node.setIcon(0, this.MainDialog.scaledResource( this.MainDialog.statusIcon("uploading")) );
+                this.object_node = new TreeBoxNode( this.PrismDialog.file_transfer_Tree );
+                this.object_node.setIcon(0, this.PrismDialog.scaledResource( this.PrismDialog.statusIcon("uploading")) );
                 this.object_node.setText( 2,d.toLocaleDateString() + ' ' + d.toLocaleTimeString());
                 this.object_node.setText( 3, String(file_to_be_trasferred.name));
                 
@@ -143,13 +143,13 @@ function NetworkOperation( MainDialog)
                 {
                     file_to_be_trasferred.status = "uploaded";
                     console.noteln("Uploaded");
-                    this.object_node.setIcon(0, this.MainDialog.scaledResource( this.MainDialog.statusIcon(file_to_be_trasferred.status)) );
+                    this.object_node.setIcon(0, this.PrismDialog.scaledResource( this.PrismDialog.statusIcon(file_to_be_trasferred.status)) );
                 }
                 else
                 {
                     file_to_be_trasferred.status = "upload_error";
                     console.warningln("Error while uploading");
-                    this.object_node.setIcon(0, this.MainDialog.scaledResource( this.MainDialog.statusIcon(file_to_be_trasferred.status)) );
+                    this.object_node.setIcon(0, this.PrismDialog.scaledResource( this.PrismDialog.statusIcon(file_to_be_trasferred.status)) );
                 }
             }
         }

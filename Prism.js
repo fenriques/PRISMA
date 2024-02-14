@@ -88,11 +88,11 @@ try {
 var frame_list = [];
 var debug = true;
 
-function MainDialog() {
+function PrismDialog() {
     this.__base__ = Dialog;
     this.__base__();
 
-    if (debug) console.noteln("--> MainDialog");
+    if (debug) console.noteln("--> PrismDialog");
 
     this.busy = false; // flag to prevent reentrant FileWatcher events
     this.dirty = true; // flag to signal a pending FileWatcher update event
@@ -2944,6 +2944,6 @@ function MainDialog() {
 
 };
 
-MainDialog.prototype = new Dialog;
+PrismDialog.prototype = new Dialog;
 
-(new MainDialog()).execute();
+(new PrismDialog()).execute();
